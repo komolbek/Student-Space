@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Student_plus.User
 {
@@ -34,6 +32,15 @@ namespace Student_plus.User
         /// </summary>
         public string Degree { get; set; }
 
+        /// <summary>
+        /// Creates a new student with the given studentId, supervisorId, firstName, lastName and degree,.
+        /// </summary>
+        /// <param name="studentId">Id of the student.</param>
+        /// <param name="supervisorId">Id of the student's supervisor.</param>
+        /// <param name="firstName">First name of the student.</param>
+        /// <param name="lastName">Last name of the student.</param>
+        /// <param name="degree">Degree of the student.</param>
+        /// <returns>Returns true if successful, false otherwise.</returns>
         public Student(int studentId, int supervisorId, string firstName, string lastName = "", string degree = "")
         {
             StudentId = studentId;
@@ -41,19 +48,6 @@ namespace Student_plus.User
             FirstName = firstName;
             LastName = lastName;
             Degree = degree;
-        }
-
-
-        /// <summary>
-        /// Creates a new student with the given username, password, and name, returns true if successful, false otherwise.
-        /// </summary>
-        /// <param name="username">Username of the student.</param>
-        /// <param name="password">Password of the student.</param>
-        /// <param name="name">Name of the student.</param>
-        /// <returns>Returns true if successful, false otherwise.</returns>
-        public bool CreateStudent(string username, string password, string name)
-        {
-            return false;
         }
 
         /// <summary>
