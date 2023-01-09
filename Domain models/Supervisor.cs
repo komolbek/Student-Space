@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Student_plus.User
+namespace Student_plus.Domain_models
 {
     /// <summary>
     /// Supervisor class responsible for creating, authenticating, updating, reviewing meeting requests,

@@ -15,15 +15,19 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="User\" />
-    <None Remove="Meeting\" />
-    <None Remove="Draft\" />
-    <None Remove="Feedback\" />
+    <None Remove="Domain models\" />
+    <None Remove="Controllers\" />
+    <None Remove="DTOs\" />
+    <None Remove="Services\" />
+    <None Remove="Data Repositories\" />
+    <None Remove="Patterns\" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="User\" />
-    <Folder Include="Meeting\" />
-    <Folder Include="Draft\" />
-    <Folder Include="Feedback\" />
+    <Folder Include="Domain models\" />
+    <Folder Include="Controllers\" />
+    <Folder Include="DTOs\" />
+    <Folder Include="Services\" />
+    <Folder Include="Data Repositories\" />
+    <Folder Include="Patterns\" />
   </ItemGroup>
 </Project>
