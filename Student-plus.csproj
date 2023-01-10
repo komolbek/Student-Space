@@ -11,6 +11,7 @@
   <PropertyGroup Condition=" '$(RunConfiguration)' == 'http' " />
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="7.0.1" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
@@ -20,7 +21,9 @@
     <None Remove="DTOs\" />
     <None Remove="Services\" />
     <None Remove="Data Repositories\" />
-    <None Remove="Patterns\" />
+    <None Remove="Design Patterns\" />
+    <None Remove="Enums\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain models\" />
@@ -28,6 +31,8 @@
     <Folder Include="DTOs\" />
     <Folder Include="Services\" />
     <Folder Include="Data Repositories\" />
-    <Folder Include="Patterns\" />
+    <Folder Include="Design Patterns\" />
+    <Folder Include="Enums\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>
