@@ -32,7 +32,7 @@ namespace StudentPlus.Controllers
 
         // GET: api/Authorisation/Students/{id}
         [HttpGet]
-        [Route("/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<Student>> GetById(int id)
         {
             // Return student with the specified ID
@@ -65,7 +65,7 @@ namespace StudentPlus.Controllers
 
         // PUT: api/Authorisation/Students/{id}
         [HttpPut]
-        [Route("/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<Student>> Update(int id, Student student)
         {
             // Update student in the database and return the updated student
@@ -74,7 +74,7 @@ namespace StudentPlus.Controllers
 
         // DELETE: api/Authorisation/Students/{id}
         [HttpDelete]
-        [Route("/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<Student>> Delete(int id)
         {
             return new EmptyResult();
@@ -84,7 +84,7 @@ namespace StudentPlus.Controllers
 
         // POST: api/Authorisation/Students/Login
         [HttpPost]
-        [Route("/Login")]
+        [Route("Login")]
         public async Task<ActionResult<Student>> Login(LoginDTO login)
         {
             return new EmptyResult();

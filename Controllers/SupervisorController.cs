@@ -11,58 +11,56 @@ namespace StudentPlus.Controllers
     [Route("api/[controller]")]
     public class SupervisorController : Controller
     {
-        // GET: api/Authorisation/Supervisors
+        // GET: api/Supervisor
         [HttpGet]
-        [Route("Supervisors")]
+        [Route("")]
         public async Task<ActionResult<IEnumerable<Supervisor>>> Get()
         {
             // Return list of supervisors
             return new List<Supervisor>();
         }
 
-        // GET: api/Authorisation/Supervisors/{id}
+        // GET: api/Supervisor/{id}
         [HttpGet]
-        [Route("Supervisors/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<Supervisor>> GetById(int id)
         {
             // Return supervisor with the specified ID
             return new Supervisor(2, "", "", "", "", "");
         }
 
-        // POST: api/Authorisation/Supervisors
+        // POST: api/Supervisor
         [HttpPost]
-        [Route("Supervisors")]
         public async Task<ActionResult<Supervisor>> Register(Supervisor supervisor)
         {
             // Add supervisor to database and return the registered supervisor
             return new Supervisor(2, "", "", "", "", "");
         }
 
-        // PUT: api/Authorisation/Supervisors/{id}
+        // PUT: api/Supervisor/{id}
         [HttpPut]
-        [Route("Supervisors/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<Supervisor>> Update(int id, Supervisor supervisor)
         {
             // Update supervisor in the database and return the updated supervisor
             return new Supervisor(2, "", "", "", "", "");
         }
 
-        // DELETE: api/Authorisation/Supervisors/{id}
+        // DELETE: api/Supervisor/{id}
         [HttpDelete]
-        [Route("Supervisors/{id}")]
+        [Route("{id}")]
         public async Task<ActionResult<Supervisor>> Delete(int id)
         {
             // Delete supervisor from the database and return the deleted supervisor
             return new Supervisor(2, "", "", "", "", "");
         }
 
-        // POST: api/Authorisation/Supervisors/Login
+        // POST: api/Supervisor/Login
         [HttpPost]
-        [Route("Supervisors/Login")]
+        [Route("Login")]
         public async Task<ActionResult<Supervisor>> Login(LoginDTO login)
         {
             return new EmptyResult();
         }
     }
 }
-

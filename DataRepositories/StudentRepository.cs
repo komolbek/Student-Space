@@ -22,6 +22,7 @@ namespace StudentPlus.DataRepositories
         {
             try
             {
+                _context.Database.EnsureCreated();
                 _context.Students.Add(student);
                 _context.SaveChanges();
             }
