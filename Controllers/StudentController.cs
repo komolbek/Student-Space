@@ -2,12 +2,12 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Student_plus.Domain_models;
-using Student_plus.User;
-using Student_plus.DTOs;
-using Student_plus.Interfaces;
+using StudentPlus.DomainModels;
+using StudentPlus.User;
+using StudentPlus.DTOs;
+using StudentPlus.Interfaces;
 
-namespace Student_plus.Controllers
+namespace StudentPlus.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
@@ -24,7 +24,6 @@ namespace Student_plus.Controllers
 
         // GET: api/Authorisation/Students
         [HttpGet]
-        [Route("Students")]
         public async Task<ActionResult<IEnumerable<Student>>> Get()
         {
             // Return list of students
@@ -33,7 +32,7 @@ namespace Student_plus.Controllers
 
         // GET: api/Authorisation/Students/{id}
         [HttpGet]
-        [Route("Students/{id}")]
+        [Route("/{id}")]
         public async Task<ActionResult<Student>> GetById(int id)
         {
             // Return student with the specified ID
@@ -42,7 +41,6 @@ namespace Student_plus.Controllers
 
         // POST: api/Authorisation/Students
         [HttpPost]
-        [Route("Students")]
         public async Task<ActionResult<Student>> Register(Student student)
         {
             // Validate incoming student
@@ -67,7 +65,7 @@ namespace Student_plus.Controllers
 
         // PUT: api/Authorisation/Students/{id}
         [HttpPut]
-        [Route("Students/{id}")]
+        [Route("/{id}")]
         public async Task<ActionResult<Student>> Update(int id, Student student)
         {
             // Update student in the database and return the updated student
@@ -76,7 +74,7 @@ namespace Student_plus.Controllers
 
         // DELETE: api/Authorisation/Students/{id}
         [HttpDelete]
-        [Route("Students/{id}")]
+        [Route("/{id}")]
         public async Task<ActionResult<Student>> Delete(int id)
         {
             return new EmptyResult();
@@ -86,7 +84,7 @@ namespace Student_plus.Controllers
 
         // POST: api/Authorisation/Students/Login
         [HttpPost]
-        [Route("Students/Login")]
+        [Route("/Login")]
         public async Task<ActionResult<Student>> Login(LoginDTO login)
         {
             return new EmptyResult();

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Student_plus.Data_Repositories
+namespace StudentPlus.DataRepositories
 {
 	public class SupervisorRepository
 	{

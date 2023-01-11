@@ -1,8 +1,8 @@
 ﻿using System;
-using Student_plus.Domain_models;
-using Student_plus.Enums;
+using StudentPlus.DomainModels;
+using StudentPlus.Enums;
 
-namespace Student_plus.Interfaces
+namespace StudentPlus.Interfaces
 {
     public interface IUserAccount
     {

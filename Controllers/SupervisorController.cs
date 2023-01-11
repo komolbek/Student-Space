@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Student_plus.Domain_models;
-using Student_plus.DTOs;
+using StudentPlus.DomainModels;
+using StudentPlus.DTOs;
 
-namespace Student_plus.Controllers
+namespace StudentPlus.Controllers
 {
     [Route("api/[controller]")]
     public class SupervisorController : Controller

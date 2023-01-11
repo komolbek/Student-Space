@@ -1,10 +1,10 @@
 ﻿using System;
-using Student_plus.Domain_models;
-using Student_plus.Enums;
-using Student_plus.Interfaces;
-using Student_plus.Services;
+using StudentPlus.DomainModels;
+using StudentPlus.Enums;
+using StudentPlus.Interfaces;
+using StudentPlus.Services;
 
-namespace Student_plus.Design_Patterns
+namespace StudentPlus.DesignPatterns
 {
 	public class UserAccountServiceAdapter : IUserAccount
     {

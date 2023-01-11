@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Student_plus.Domain_models
+namespace StudentPlus.DomainModels
 {
     /// <summary>
     /// Represents a domain model class to generate and validate tokens.

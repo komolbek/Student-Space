@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Student_plus.Services
+namespace StudentPlus.Services
 {
 	public class SupervisorAccountService
 	{

@@ -1,29 +1,33 @@
 ﻿using System;
-using Student_plus.Db_Contexts;
-using Student_plus.Domain_models;
+using StudentPlus.DbContexts;
+using StudentPlus.DomainModels;
 using System.Linq;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
-using Student_plus.Interfaces;
-using Student_plus.Enums;
+using StudentPlus.Interfaces;
+using StudentPlus.Enums;
 
-namespace Student_plus.Data_Repositories
+namespace StudentPlus.DataRepositories
 {
     public partial class StudentRepository
     {
-        private readonly StudentDbContext _context;
+        private readonly AppDbContext _context;
 
-        public StudentRepository(StudentDbContext context)
+        public StudentRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public void Save(Student user)
+        public void Save(Student student)
         {
-            if (user is Student student)
+            try
             {
                 _context.Students.Add(student);
                 _context.SaveChanges();
+            }
+            catch (DbUpdateException ex)
+            {
+                throw ex;
             }
         }
 

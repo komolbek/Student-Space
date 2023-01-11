@@ -1,9 +1,9 @@
 ﻿using System;
-using Student_plus.Domain_models;
-using Student_plus.Data_Repositories;
-using Student_plus.Design_Patterns;
+using StudentPlus.DomainModels;
+using StudentPlus.DataRepositories;
+using StudentPlus.DesignPatterns;
 
-namespace Student_plus.Services
+namespace StudentPlus.Services
 {
 	public class StudentAccountService
 	{
@@ -18,15 +18,14 @@ namespace Student_plus.Services
 
         public Student RegisterNewStudent(Student newStudent)
 		{
-            Student student = (Student)_studentRepository.Save(newStudent);
-
-            if (newStudent != null)
+            try
             {
+                _studentRepository.Save(newStudent);
                 return newStudent;
-            } else
+            } catch
             {
-                throw new Exception("could not create new user");
-            }
+                throw;
+            }            
         }
 
         public Student UpdateStudentAccountDetails(Student student)

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using Student_plus.Interfaces;
+using StudentPlus.Interfaces;
 
-namespace Student_plus.Domain_models
+namespace StudentPlus.DomainModels
 {
     public class Student : IUser
     {

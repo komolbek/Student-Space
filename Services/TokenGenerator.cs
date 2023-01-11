@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Student_plus.User
+namespace StudentPlus.User
 {
 	public class TokenGenerator
 	{

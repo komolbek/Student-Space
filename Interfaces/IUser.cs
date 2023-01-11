@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace Student_plus.Interfaces
+namespace StudentPlus.Interfaces
 {
 	public interface IUser
 	{

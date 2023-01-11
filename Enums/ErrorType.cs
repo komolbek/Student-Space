@@ -1,5 +1,6 @@
 ﻿using System;
-namespace Student_plus.Enums
+
+namespace StudentPlus.Enums
 {
 	public enum ErrorType
 	{

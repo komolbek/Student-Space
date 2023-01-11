@@ -1,7 +1,7 @@
 ﻿using System;
-using Student_plus.Enums;
+using StudentPlus.Enums;
 
-namespace Student_plus.DTOs
+namespace StudentPlus.DTOs
 {
 	public class LoginDTO
 	{
