@@ -24,6 +24,7 @@
     <None Remove="Design Patterns\" />
     <None Remove="Enums\" />
     <None Remove="Interfaces\" />
+    <None Remove="Interfaces\IUserAccount" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Domain models\" />
@@ -34,5 +35,8 @@
     <Folder Include="Design Patterns\" />
     <Folder Include="Enums\" />
     <Folder Include="Interfaces\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Interfaces\IUserAccount.cs" />
   </ItemGroup>
 </Project>

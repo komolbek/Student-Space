@@ -18,7 +18,7 @@ namespace Student_plus.Db_Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Student>().ToTable(DbTableNames.Student.ToString());
+            modelBuilder.Entity<Student>().ToTable(DbTableName.Student.ToString());
         }
 
         /// <summary>

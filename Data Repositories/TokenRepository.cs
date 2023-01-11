@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Student_plus.User
+namespace Student_plus.Data_Repositories
 {
 	public class TokenRepository
 	{

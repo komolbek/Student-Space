@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Student_plus.Interfaces;
 
 namespace Student_plus.Domain_models
 {
@@ -8,7 +9,7 @@ namespace Student_plus.Domain_models
     /// Supervisor class responsible for creating, authenticating, updating, reviewing meeting requests,
     /// providing meeting feedback responses, and reviewing drafts from students.
     /// </summary>
-    public class Supervisor
+    public class Supervisor : IUser
     {
         /// <summary>
         /// Unique identifier for the supervisor
@@ -26,6 +27,8 @@ namespace Student_plus.Domain_models
         /// The last name of the student.
         /// </summary>
         public string LastName { get; set; }
+
+        public string Password { get; set; }
 
         /// <summary>
         /// Department the supervisor is in charge of

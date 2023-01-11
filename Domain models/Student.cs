@@ -1,8 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using Student_plus.Interfaces;
 
 namespace Student_plus.Domain_models
 {
-    public class Student
+    public class Student : IUser
     {
         /// <summary>
         /// The unique identifier of the student.
@@ -26,6 +27,8 @@ namespace Student_plus.Domain_models
         /// The last name of the student.
         /// </summary>
         public string LastName { get; set; }
+
+        public string Password { get; set; }
 
         /// <summary>
         /// The degree that the student is pursuing.
