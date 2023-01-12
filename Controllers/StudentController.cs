@@ -35,8 +35,7 @@ namespace StudentPlus.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Student>> GetById(int id)
         {
-            // Return student with the specified ID
-            return new Student(1,2,"");
+            return new EmptyResult();
         }
 
         // POST: api/Authorisation/Students
@@ -68,8 +67,7 @@ namespace StudentPlus.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Student>> Update(int id, Student student)
         {
-            // Update student in the database and return the updated student
-            return new Student(1, 2, "");
+            return new EmptyResult();
         }
 
         // DELETE: api/Authorisation/Students/{id}

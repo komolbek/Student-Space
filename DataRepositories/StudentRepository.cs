@@ -66,9 +66,9 @@ namespace StudentPlus.DataRepositories
             }
         }
 
-        public List<Student> GetStudentsBySupervisor(int supervisorId)
+        public List<Student> GetStudentsBySupervisor(string supervisorId)
         {
-            return _context.Students.Where(s => s.SupervisorId == supervisorId).ToList();
+            return _context.Students.Where(s => s.SupervisorNumber == supervisorId).ToList();
         }
     }
 }

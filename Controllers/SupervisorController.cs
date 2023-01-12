@@ -16,8 +16,7 @@ namespace StudentPlus.Controllers
         [Route("")]
         public async Task<ActionResult<IEnumerable<Supervisor>>> Get()
         {
-            // Return list of supervisors
-            return new List<Supervisor>();
+            return new EmptyResult();
         }
 
         // GET: api/Supervisor/{id}
@@ -25,16 +24,14 @@ namespace StudentPlus.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Supervisor>> GetById(int id)
         {
-            // Return supervisor with the specified ID
-            return new Supervisor(2, "", "", "", "", "");
+            return new EmptyResult();
         }
 
         // POST: api/Supervisor
         [HttpPost]
         public async Task<ActionResult<Supervisor>> Register(Supervisor supervisor)
         {
-            // Add supervisor to database and return the registered supervisor
-            return new Supervisor(2, "", "", "", "", "");
+            return new EmptyResult();
         }
 
         // PUT: api/Supervisor/{id}
@@ -42,8 +39,7 @@ namespace StudentPlus.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Supervisor>> Update(int id, Supervisor supervisor)
         {
-            // Update supervisor in the database and return the updated supervisor
-            return new Supervisor(2, "", "", "", "", "");
+            return new EmptyResult();
         }
 
         // DELETE: api/Supervisor/{id}
@@ -51,8 +47,7 @@ namespace StudentPlus.Controllers
         [Route("{id}")]
         public async Task<ActionResult<Supervisor>> Delete(int id)
         {
-            // Delete supervisor from the database and return the deleted supervisor
-            return new Supervisor(2, "", "", "", "", "");
+            return new EmptyResult();
         }
 
         // POST: api/Supervisor/Login
