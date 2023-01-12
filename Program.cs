@@ -27,7 +27,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     // Get the connection string from appsettings.json
     var configuration = builder.Configuration;
-    var connectionString = configuration.GetConnectionString("mydatabase");
+    var connectionString = configuration.GetConnectionString("sqlite");
 
     // Use the connection string to configure the DbContext
     options.UseSqlite(connectionString);
@@ -43,6 +43,8 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
+
+app.UsePathBase("/swagger");
 
 app.UseAuthorization();
 

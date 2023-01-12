@@ -21,12 +21,32 @@ namespace StudentPlus.DataRepositories
         {
             try
             {
-                _context.Students.Add(student);
+                _context.Student.Add(student);
                 _context.SaveChanges();
             }
             catch (DbUpdateException ex)
             {
                 throw ex;
+            }
+        }
+
+        public Student GetStudentById(string userId)
+        {
+            try
+            {
+                var student = _context.Student.FirstOrDefault(u => u.StudentId == userId);
+                if (student != null)
+                {
+                    return student!;
+                }
+                else
+                {
+                    throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
+                }
+            }
+            catch
+            {
+                throw;
             }
         }
 
@@ -44,25 +64,7 @@ namespace StudentPlus.DataRepositories
             }
         }
 
-        public Student GetStudentById(int userId)
-        {
-            try
-            {
-                var student = _context.Students.Find(userId);
-                if (student != null)
-                {
-                    return _context.Students.Find(userId)!;
-                }
-                else
-                {
-                    throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
-                }
-            }
-            catch
-            {
-                throw;
-            }
-        }
+        
 
         //public List<Student> GetStudentsBySupervisor(string supervisorId)
         //{

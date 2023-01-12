@@ -33,9 +33,10 @@ namespace StudentPlus.Controllers
         // GET: api/Authorisation/Students/{id}
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Student>> GetById(int id)
+        public async Task<ActionResult<Student>> GetById(string id)
         {
-            return new EmptyResult();
+            var student = _userAccount.Login(id, "");
+            return Ok(student);
         }
 
         // POST: api/Authorisation/Students

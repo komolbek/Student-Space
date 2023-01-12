@@ -21,18 +21,12 @@ namespace StudentPlus.DesignPatterns
 
         public bool DeleteAccount(string userId, UserType userType)
         {
-            if (userType == UserType.Student)
-            {
-                return _studentAccountService.DeleteStudent(userId);
-            } else
-            {
-                return _supervisorAccountService.DeleteSupervisor(userId);
-            }                
+            throw new NotImplementedException();             
         }
 
         public IUser Login(string email, string password)
         {
-            throw new NotImplementedException();
+            return _studentAccountService.DeleteStudent(email);
         }
 
         public IUser RegisterNewAccount(IUser user)

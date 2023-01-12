@@ -12,24 +12,24 @@ namespace StudentPlus
 {
     public class AppDbContext : DbContext
     {
-        public DbSet<Draft> Drafts { get; set; }
-        public DbSet<DraftFeedback> DraftFeedbacks { get; set; }
-        public DbSet<Meeting> Meetings { get; set; }
-        public DbSet<MeetingAttendee> MeetingAttendees { get; set; }
-        public DbSet<MeetingFeedback> MeetingFeedbacks { get; set; }
-        public DbSet<MeetingFeedbackCatergory> MeetingFeedbackCatergories { get; set; }
-        public DbSet<MeetingFeedbackResponse> MeetingFeedbackResponses { get; set; }
-        public DbSet<MeetingQA> MeetingQAs { get; set; }
-        public DbSet<MeetingRecording> MeetingRecordings { get; set; }
-        public DbSet<MeetingRequest> MeetingRequests { get; set; }
-        public DbSet<Student> Students { get; set; }
-        public DbSet<Supervisee> Supervisees { get; set; }
-        public DbSet<Supervisor> Supervisors { get; set; }
-        public DbSet<Token> Tokens { get; set; }
+        public DbSet<Draft> Draft { get; set; }
+        public DbSet<DraftFeedback> DraftFeedback { get; set; }
+        public DbSet<Meeting> Meeting { get; set; }
+        public DbSet<MeetingAttendee> MeetingAttendee { get; set; }
+        public DbSet<MeetingFeedback> MeetingFeedback { get; set; }
+        public DbSet<MeetingFeedbackCatergory> MeetingFeedbackCatergory { get; set; }
+        public DbSet<MeetingFeedbackResponse> MeetingFeedbackResponse { get; set; }
+        public DbSet<MeetingQA> MeetingQA { get; set; }
+        public DbSet<MeetingRecording> MeetingRecording { get; set; }
+        public DbSet<MeetingRequest> MeetingRequest { get; set; }
+        public DbSet<Student> Student { get; set; }
+        public DbSet<Supervisee> Supervisee { get; set; }
+        public DbSet<Supervisor> Supervisor { get; set; }
+        public DbSet<Token> Token { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options)
             : base(options)
-        {}     
+        {}
     }
 }
 

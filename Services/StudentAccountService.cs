@@ -38,9 +38,9 @@ namespace StudentPlus.Services
             throw new NotImplementedException();
         }
 
-        public bool DeleteStudent(string studentId)
+        public Student DeleteStudent(string studentId)
 		{
-            throw new NotImplementedException();
+            return _studentRepository.GetStudentById(studentId);
         }		
 	}
 }
