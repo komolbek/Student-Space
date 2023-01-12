@@ -1,31 +1,25 @@
 ﻿using System;
 namespace StudentPlus.DomainModels
 {
-    /// <summary>
-    /// Represents a domain model class to generate and validate tokens.
-    /// </summary>
     public class Token
     {
-        /// <summary>
-        /// Generates a new token for the user with the given username.
-        /// </summary>
-        /// <param name="username">The username of the user.</param>
-        /// <returns>A string representing the generated token.</returns>
-        public string GenerateToken(string username)
+        public string TokenId { get; set; }
+        public string Value { get; set; }
+        public string ExpirationDate { get; set; }
+        public string UserId { get; set; }
+
+        public Token(string tokenId, string value, string expirationDate, string userId)
         {
-            return "";
+            TokenId = tokenId;
+            Value = value;
+            ExpirationDate = expirationDate;
+            UserId = userId;
         }
 
-        /// <summary>
-        /// Validates the given token for the user with the given username.
-        /// </summary>
-        /// <param name="username">The username of the user.</param>
-        /// <param name="token">The token to validate.</param>
-        /// <returns>True if the token is valid, false otherwise.</returns>
-        public bool ValidateToken(string username, string token)
+        public string GenerateNewToken(string token)
         {
-            return false;
-        }
+            return this.Value;
+        }        
     }
 }
 

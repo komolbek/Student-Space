@@ -7,28 +7,31 @@ namespace StudentPlus.DomainModels
 {
     public class Student : IUser
     {
+        public string StudentId { get; set; }
         public string StudentNumber { get; set; }
-        public string SupervisorNumber { get; set; }        
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string Course { get; set; }
+        public string GraduationDate { get; set; }
         public string Password { get; set; }
-        public string Degree { get; set; }
 
         public Student(
+            string studentId,
             string studentNumber,
-            string supervisorNumber,
-            string firstName,            
-            string password,
-            string lastName = "",
-            string degree = "")
+            string firstName,
+            string lastName,
+            string course,
+            string graduationDate,
+            string password)
         {
+            StudentId = studentId;
             StudentNumber = studentNumber;
-            SupervisorNumber = supervisorNumber;            
             FirstName = firstName;
             LastName = lastName;
-            Degree = degree;
+            Course = course;
+            GraduationDate = graduationDate;
             Password = password;
-        }                              
+        }
     }
 }
 

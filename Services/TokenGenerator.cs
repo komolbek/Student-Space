@@ -5,7 +5,13 @@ namespace StudentPlus.User
 	{
 		public TokenGenerator()
 		{
+
 		}
-	}
+
+        public bool ValidateToken(string username, string token)
+        {
+            return false;
+        }
+    }
 }
 
