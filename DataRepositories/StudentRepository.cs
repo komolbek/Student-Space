@@ -21,7 +21,6 @@ namespace StudentPlus.DataRepositories
         {
             try
             {
-                _context.Database.EnsureCreated();
                 _context.Students.Add(student);
                 _context.SaveChanges();
             }
@@ -55,20 +54,20 @@ namespace StudentPlus.DataRepositories
                     return _context.Students.Find(userId)!;
                 }
                 else
-                {// TODO: fix duplication of exception
+                {
                     throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
                 }
             }
             catch
             {
-                throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
+                throw;
             }
         }
 
-        public List<Student> GetStudentsBySupervisor(string supervisorId)
-        {
-            return _context.Students.Where(s => s.SupervisorNumber == supervisorId).ToList();
-        }
+        //public List<Student> GetStudentsBySupervisor(string supervisorId)
+        //{
+        //    return _context.Students.Where(s => s.SupervisorNumber == supervisorId).ToList();
+        //}
     }
 }
 

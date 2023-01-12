@@ -1,9 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Student_plus.DomainModels
 {
 	public class MeetingRequest
 	{
+        [Key]
         public string RequestId { get; set; }
+
         public string Organiser { get; set; }
         public string Topic { get; set; }
         public string Status { get; set; }

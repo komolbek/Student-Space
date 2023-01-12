@@ -1,11 +1,20 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace Student_plus.DomainModels
 {
 	public class MeetingFeedback
 	{
+        [Key]
         public string MFeedbackId { get; set; }
+
+        [ForeignKey("MeetingId")]
         public string MeetingId { get; set; }
+
+        [ForeignKey("StudentNumber")]
         public string StudentNumber { get; set; }
+
         public string Date { get; set; }
         public string FeedbackText { get; set; }
         public string Category { get; set; }

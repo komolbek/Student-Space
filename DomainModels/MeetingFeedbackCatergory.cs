@@ -1,13 +1,16 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace Student_plus.DomainModels
 {
 	public class MeetingFeedbackCatergory
 	{
+        [Key]
         public string FCategoryId { get; set; }
         public string CategoryName { get; set; }
         public string CategoryDescription { get; set; }
 
-        public MeetingFeedbackCategory(string fCategoryId, string categoryName, string categoryDescription)
+        public MeetingFeedbackCatergory(string fCategoryId, string categoryName, string categoryDescription)
         {
             FCategoryId = fCategoryId;
             CategoryName = categoryName;

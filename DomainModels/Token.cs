@@ -1,9 +1,13 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
+
 namespace StudentPlus.DomainModels
 {
     public class Token
     {
+        [Key]
         public string TokenId { get; set; }
+
         public string Value { get; set; }
         public string ExpirationDate { get; set; }
         public string UserId { get; set; }

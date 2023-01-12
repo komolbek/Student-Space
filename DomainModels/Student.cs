@@ -7,7 +7,9 @@ namespace StudentPlus.DomainModels
 {
     public class Student : IUser
     {
+        [Key]
         public string StudentId { get; set; }
+
         public string StudentNumber { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
