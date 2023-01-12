@@ -4,8 +4,8 @@ using StudentPlus.Services;
 using StudentPlus.DesignPatterns;
 using StudentPlus.DataRepositories;
 using Microsoft.EntityFrameworkCore;
-using StudentPlus.DbContexts;
 using Microsoft.Extensions.Configuration;
+using StudentPlus;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -24,7 +24,14 @@ builder.Services.AddTransient<StudentRepository>();
 
 // Database and storage configurations
 builder.Services.AddDbContext<AppDbContext>(options =>
-   options.UseSqlite(builder.Configuration.GetConnectionString("AppDbContext")));
+{
+    // Get the connection string from appsettings.json
+    var configuration = builder.Configuration;
+    var connectionString = configuration.GetConnectionString("mydatabase");
+
+    // Use the connection string to configure the DbContext
+    options.UseSqlite(connectionString);
+});
 
 var app = builder.Build();
 
