@@ -4,15 +4,19 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Student_plus.DomainModels
 {
+    [Table("SUPERVISEE")]
     public class Supervisee
     {
         [Key]
+        [Column("supervisee_id")]
         public string SuperviseeId { get; set; }
 
-        [ForeignKey("StudentId")]
-        public string StudentId{ get; set; }
+        [Column("student_id")]
+        [ForeignKey("student_id")]
+        public string StudentId { get; set; }
 
-        [ForeignKey("SupervisorId")]
+        [Column("supervisor_id")]
+        [ForeignKey("supervisor_id")]
         public string SupervisorId { get; set; }
 
         public Supervisee(string superviseeId, string studentId, string supervisorId)
