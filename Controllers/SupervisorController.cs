@@ -5,57 +5,132 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using StudentPlus.DomainModels;
 using StudentPlus.DTOs;
+using StudentPlus.Enums;
+using StudentPlus.Interfaces;
 
 namespace StudentPlus.Controllers
 {
     [Route("api/[controller]")]
-    public class SupervisorController : Controller
+    [ApiController]
+    public class SupervisorController : ControllerBase
     {
-        // GET: api/Supervisor
-        [HttpGet]
-        [Route("")]
-        public async Task<ActionResult<IEnumerable<Supervisor>>> Get()
+        private readonly IUserAccount _userAccount;
+
+        public SupervisorController(IUserAccount userAccount)
         {
-            return new EmptyResult();
+            _userAccount = userAccount;
         }
 
-        // GET: api/Supervisor/{id}
+        // GET: api/Supervisor/BySupervisor/{id}
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Supervisor>> GetById(int id)
+        public async Task<ActionResult<Supervisor>> GetAllBySupervisor(string id)
         {
             return new EmptyResult();
         }
 
-        // POST: api/Supervisor
+        // POST: api/Supervisors
         [HttpPost]
         public async Task<ActionResult<Supervisor>> Register(Supervisor supervisor)
         {
-            return new EmptyResult();
+            // Validate incoming supervisor
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            // Add supervisor to database
+            var result = await Task.Run(() => this._userAccount.RegisterNewAccountAsync(supervisor));
+
+            // Return the registered supervisor
+            if (result != null)
+            {
+                return CreatedAtAction(nameof(Register), result);
+            }
+            else
+            {
+                return BadRequest("Unable to register supervisor");
+            }
         }
 
-        // PUT: api/Supervisor/{id}
+        // PUT: api/Supervisors/{id}
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult<Supervisor>> Update(int id, Supervisor supervisor)
+        public async Task<ActionResult<Supervisor>> Update(string id, Supervisor supervisor)
         {
-            return new EmptyResult();
+            if (id != supervisor.SupervisorId)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                IUser updatedSupervisor = (Supervisor)await _userAccount.UpdateAccountDetailsAsync((IUser)supervisor, UserType.Supervisor);
+                return Ok(updatedSupervisor);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
-        // DELETE: api/Supervisor/{id}
+        // DELETE: api/Supervisors/{id}
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult<Supervisor>> Delete(int id)
+        public async Task<ActionResult<Supervisor>> Delete(string id)
         {
-            return new EmptyResult();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("UserId cannot be null or whitespace");
+            }
+
+            var userType = UserType.Supervisor;
+            var success = await _userAccount.DeleteAccountAsync(id, userType);
+            if (!success)
+            {
+                return NotFound("No supervisor account was found with the userId.");
+            }
+
+            return NoContent();
         }
 
-        // POST: api/Supervisor/Login
+
+
+        // POST: api/Supervisors/Login
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<Supervisor>> Login(LoginDTO login)
+        public async Task<ActionResult<Supervisor>> Login(LoginDTO loginData)
         {
-            return new EmptyResult();
+            if (loginData == null)
+                return BadRequest("Login details are empty.");
+
+            var supervisor = await _userAccount.LoginAsync(loginData.UserNumber, loginData.UserPassword, loginData.UserType);
+
+            if (supervisor == null)
+                return NotFound("No supervisor found with the provided credentials.");
+
+            return Ok(supervisor);
+        }
+
+        // GET: api/Supervisors/Logout
+        [HttpGet]
+        [Route("Logout")]
+        public async Task<ActionResult<bool>> Logout()
+        {
+            try
+            {
+                //await _userAccountService.LogoutAsync();
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }

@@ -20,7 +20,10 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IUserAccount, UserAccountServiceAdapter>();
 builder.Services.AddTransient<StudentAccountService>();
 builder.Services.AddTransient<SupervisorAccountService>();
+
 builder.Services.AddTransient<StudentRepository>();
+builder.Services.AddTransient<SupervisorRepository>();
+
 
 // Database and storage configurations
 builder.Services.AddDbContext<AppDbContext>(options =>

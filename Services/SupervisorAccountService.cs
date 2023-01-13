@@ -1,15 +1,47 @@
 ﻿using System;
+using StudentPlus.DataRepositories;
+using StudentPlus.DomainModels;
+
 namespace StudentPlus.Services
 {
-	public class SupervisorAccountService
-	{
-		public SupervisorAccountService()
-		{
-		}
+    public class SupervisorAccountService
+    {
 
-        public bool DeleteSupervisor(string studentId)
+        private readonly SupervisorRepository _supervisorRepository;
+
+        public SupervisorAccountService(
+            SupervisorRepository supervisorRepository)
         {
-            return true;
+            _supervisorRepository = supervisorRepository;
+        }
+        public async Task<Supervisor> RegisterNewSupervisorAsync(Supervisor newSupervisor)
+        {
+            try
+            {
+                await _supervisorRepository.InsertAsync(newSupervisor);
+                return newSupervisor;
+            }
+            catch
+            {
+                throw;
+            }
+        }
+        // todo: add logic for combining with token etc.
+        public async Task<Supervisor> LoginSupervisorAsync(string supervisorNum, string password)
+        {
+            Supervisor supervisor = await _supervisorRepository.RetrieveAsync(supervisorNum, password);
+
+            return supervisor;
+        }
+
+        public async Task<Supervisor> UpdateSupervisorAccountAsync(Supervisor supervisor)
+        {
+            return await _supervisorRepository.UpdateAsync(supervisor);
+        }
+
+        public async Task<bool> DeleteSupervisorAsync(string supervisorId)
+        {
+            return await _supervisorRepository.DeleteAsync(supervisorId);
         }
     }
 }

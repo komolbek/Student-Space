@@ -5,10 +5,10 @@ using StudentPlus.DesignPatterns;
 
 namespace StudentPlus.Services
 {
-	public class StudentAccountService
-	{
+    public class StudentAccountService
+    {
 
-		private readonly StudentRepository _studentRepository;
+        private readonly StudentRepository _studentRepository;
 
         public StudentAccountService(
             StudentRepository studentRepository)

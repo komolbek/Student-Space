@@ -27,7 +27,7 @@ namespace StudentPlus.DesignPatterns
             }
             else
             {
-                throw new NotImplementedException();
+                return await _supervisorAccountService.DeleteSupervisorAsync(userId);
             }
         }
 
@@ -37,9 +37,9 @@ namespace StudentPlus.DesignPatterns
             {
                 return await _studentAccountService.LoginStudentAsync(userNumber, password);
             }
-            else
+            else 
             {
-                throw new NotImplementedException();
+                return await _supervisorAccountService.LoginSupervisorAsync(userNumber, password);
             }
         }
 
@@ -52,7 +52,8 @@ namespace StudentPlus.DesignPatterns
             }
             else
             {
-                throw new NotImplementedException();
+                Supervisor supervisor = (Supervisor)user;
+                return await _supervisorAccountService.RegisterNewSupervisorAsync(supervisor);
             }
         }
 
@@ -65,7 +66,8 @@ namespace StudentPlus.DesignPatterns
             }
             else
             {
-                throw new NotImplementedException();
+                Supervisor supervisor = (Supervisor)user;
+                return await _supervisorAccountService.UpdateSupervisorAccountAsync(supervisor);
             }
         }
     }
