@@ -6,15 +6,14 @@ namespace StudentPlus.DTOs
 	public class LoginDTO
 	{
         public UserType UserType { get; set; }
-		public string UserId { get; set; }
+        public string UserNumber { get; set; }
         public string UserPassword { get; set; }
 
-        public LoginDTO(UserType userType, string userId, string userPassword)
+        public LoginDTO(string userNumber, string userPassword, UserType userType)
 		{
-			UserId = userId;
+            UserNumber = userNumber;
+            UserPassword = userPassword;
             UserType = userType;
-			UserPassword = userPassword;
-
         }
 	}
 }

@@ -17,12 +17,12 @@ namespace StudentPlus.DataRepositories
             _context = context;
         }
 
-        public void Save(Student student)
+        public async Task InsertAsync(Student student)
         {
             try
             {
-                _context.Student.Add(student);
-                _context.SaveChanges();
+                await _context.Student.AddAsync(student);
+                await _context.SaveChangesAsync();
             }
             catch (DbUpdateException ex)
             {
@@ -30,41 +30,53 @@ namespace StudentPlus.DataRepositories
             }
         }
 
-        public Student GetStudentById(string userId)
+        public async Task<Student> RetrieveAsync(string studentNum, string password)
         {
             try
             {
-                var student = _context.Student.FirstOrDefault(u => u.StudentId == userId);
-                if (student != null)
-                {
-                    return student!;
-                }
-                else
-                {
-                    throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
-                }
+                return await _context.Student
+                    .Where(x => x.StudentNumber == studentNum && x.Password == password)
+                    .FirstOrDefaultAsync();
             }
             catch
             {
-                throw;
+                throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
             }
         }
 
-        public void Delete(int userId)
+        public async Task<bool> DeleteAsync(string studentId)
         {
-            // todo: implement
+            var user = await _context.Student.FirstOrDefaultAsync(student => student.StudentId == studentId);
+
+            if (user != null)
+            {
+                _context.Student.Remove(user);
+                await _context.SaveChangesAsync();
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
-        public void Update(Student user)
+        public async Task<Student> UpdateAsync(Student student)
         {
-            if (user is Student student)
+            var stud = await _context.Student.FirstOrDefaultAsync(student => student.StudentId == student.StudentId);
+
+            if (stud != null)
             {
                 _context.Entry(student).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                _context.SaveChanges();
+                await _context.SaveChangesAsync();
+
+                return await _context.Student.FirstOrDefaultAsync(student => student.StudentId == student.StudentId);
+            }
+            else
+            {
+                throw new Exception("Student not found");
             }
         }
-
-        
 
         //public List<Student> GetStudentsBySupervisor(string supervisorId)
         //{

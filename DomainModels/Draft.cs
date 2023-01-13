@@ -31,11 +31,11 @@ namespace Student_plus.DomainModels
         [Column("submitted_date")]
         public string SubmittedDate { get; set; }
 
-        public Draft(string draftId, string studentNumber, string supervisorNumber, string filePath, string notes, string status, string submittedDate)
+        public Draft(string draftId, string studentId, string supervisorId, string filePath, string notes, string status, string submittedDate)
         {
             DraftId = draftId;
-            StudentId = studentNumber;
-            SupervisorId = supervisorNumber;
+            StudentId = studentId;
+            SupervisorId = supervisorId;
             FilePath = filePath;
             Notes = notes;
             Status = status;

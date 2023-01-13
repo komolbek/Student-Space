@@ -6,7 +6,7 @@ using StudentPlus.Services;
 
 namespace StudentPlus.DesignPatterns
 {
-	public class UserAccountServiceAdapter : IUserAccount
+    public class UserAccountServiceAdapter : IUserAccount
     {
         private readonly StudentAccountService _studentAccountService;
         private readonly SupervisorAccountService _supervisorAccountService;
@@ -14,37 +14,59 @@ namespace StudentPlus.DesignPatterns
         public UserAccountServiceAdapter(
             StudentAccountService studentAccountService,
             SupervisorAccountService supervisorAccountService)
-		{
+        {
             _studentAccountService = studentAccountService;
             _supervisorAccountService = supervisorAccountService;
         }
 
-        public bool DeleteAccount(string userId, UserType userType)
+        public async Task<bool> DeleteAccountAsync(string userId, UserType userType)
         {
-            throw new NotImplementedException();             
-        }
-
-        public IUser Login(string email, string password)
-        {
-            return _studentAccountService.DeleteStudent(email);
-        }
-
-        public IUser RegisterNewAccount(IUser user)
-        {
-            if (user is Student)
+            if (userType == UserType.Student)
             {
-                Student student = (Student)user;
-                return _studentAccountService.RegisterNewStudent(student);
-            } else
+                return await _studentAccountService.DeleteStudentAsync(userId);
+            }
+            else
             {
                 throw new NotImplementedException();
             }
         }
 
-        public IUser UpdateAccountDetails(IUser user)
+        public async Task<IUser> LoginAsync(string userNumber, string password, UserType userType)
         {
-            throw new NotImplementedException();
+            if (userType == UserType.Student)
+            {
+                return await _studentAccountService.LoginStudentAsync(userNumber, password);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public async Task<IUser> RegisterNewAccountAsync(IUser user)
+        {
+            if (user is Student)
+            {
+                Student student = (Student)user;
+                return await _studentAccountService.RegisterNewStudentAsync(student);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        public async Task<IUser> UpdateAccountDetailsAsync(IUser user, UserType userType)
+        {
+            if (user is Student)
+            {
+                Student student = (Student)user;
+                return await _studentAccountService.UpdateStudentAccountAsync(student);
+            }
+            else
+            {
+                throw new NotImplementedException();
+            }
         }
     }
 }
-

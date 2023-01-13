@@ -15,33 +15,35 @@ namespace StudentPlus.Services
         {
             _studentRepository = studentRepository;
         }
-
-        public Student RegisterNewStudent(Student newStudent)
-		{
+        public async Task<Student> RegisterNewStudentAsync(Student newStudent)
+        {
             try
             {
-                _studentRepository.Save(newStudent);
+                await _studentRepository.InsertAsync(newStudent);
                 return newStudent;
-            } catch
+            }
+            catch
             {
                 throw;
-            }            
+            }
+        }
+        // todo: add logic for combining with token etc.
+        public async Task<Student> LoginStudentAsync(string studentNum, string password)
+        {
+            Student student = await _studentRepository.RetrieveAsync(studentNum, password);
+
+            return student;
         }
 
-        public Student UpdateStudentAccountDetails(Student student)
-		{
-            throw new NotImplementedException();
+        public async Task<Student> UpdateStudentAccountAsync(Student student)
+        {
+            return await _studentRepository.UpdateAsync(student);
         }
 
-        public Student LoginStudent(string email, string password)
-		{
-            throw new NotImplementedException();
+        public async Task<bool> DeleteStudentAsync(string studentId)
+        {
+            return await _studentRepository.DeleteAsync(studentId);
         }
-
-        public Student DeleteStudent(string studentId)
-		{
-            return _studentRepository.GetStudentById(studentId);
-        }		
-	}
+    }
 }
 

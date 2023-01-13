@@ -6,6 +6,7 @@ using StudentPlus.DomainModels;
 using StudentPlus.User;
 using StudentPlus.DTOs;
 using StudentPlus.Interfaces;
+using StudentPlus.Enums;
 
 namespace StudentPlus.Controllers
 {
@@ -20,26 +21,15 @@ namespace StudentPlus.Controllers
             _userAccount = userAccount;
         }
 
-        // Private fields for storing student and supervisor data
-
-        // GET: api/Authorisation/Students
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Student>>> Get()
-        {
-            // Return list of students
-            return new List<Student>();
-        }
-
-        // GET: api/Authorisation/Students/{id}
+        // GET: api/Student/BySupervisor/{id}
         [HttpGet]
         [Route("{id}")]
-        public async Task<ActionResult<Student>> GetById(string id)
+        public async Task<ActionResult<Student>> GetAllBySupervisor(string id)
         {
-            var student = _userAccount.Login(id, "");
-            return Ok(student);
+            return new EmptyResult();
         }
 
-        // POST: api/Authorisation/Students
+        // POST: api/Students
         [HttpPost]
         public async Task<ActionResult<Student>> Register(Student student)
         {
@@ -50,7 +40,7 @@ namespace StudentPlus.Controllers
             }
 
             // Add student to database
-            var result = await Task.Run(() => this._userAccount.RegisterNewAccount(student));
+            var result = await Task.Run(() => this._userAccount.RegisterNewAccountAsync(student));
 
             // Return the registered student
             if (result != null)
@@ -66,28 +56,82 @@ namespace StudentPlus.Controllers
         // PUT: api/Authorisation/Students/{id}
         [HttpPut]
         [Route("{id}")]
-        public async Task<ActionResult<Student>> Update(int id, Student student)
+        public async Task<ActionResult<Student>> Update(string id, Student student)
         {
-            return new EmptyResult();
+            if (id != student.StudentId)
+            {
+                return BadRequest();
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                IUser updatedStudent = (Student) await _userAccount.UpdateAccountDetailsAsync((IUser)student, UserType.Student);
+                return Ok(updatedStudent);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex);
+            }
         }
 
-        // DELETE: api/Authorisation/Students/{id}
+        // DELETE: api/Students/{id}
         [HttpDelete]
         [Route("{id}")]
-        public async Task<ActionResult<Student>> Delete(int id)
+        public async Task<ActionResult<Student>> Delete(string id)
         {
-            return new EmptyResult();
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return BadRequest("UserId cannot be null or whitespace");
+            }
+
+            var userType = UserType.Student;
+            var success = await _userAccount.DeleteAccountAsync(id, userType);
+            if (!success)
+            {
+                return NotFound("No student account was found with the userId.");
+            }
+
+            return NoContent();
         }
 
         
 
-        // POST: api/Authorisation/Students/Login
+        // POST: api/Students/Login
         [HttpPost]
         [Route("Login")]
-        public async Task<ActionResult<Student>> Login(LoginDTO login)
+        public async Task<ActionResult<Student>> Login(LoginDTO loginData)
         {
-            return new EmptyResult();
-        }        
+            if (loginData == null)
+                return BadRequest("Login details are empty.");
+
+            var student = await _userAccount.LoginAsync(loginData.UserNumber, loginData.UserPassword, loginData.UserType);
+
+            if (student == null)
+                return NotFound("No student found with the provided credentials.");
+
+            return Ok(student);
+        }
+
+        // GET: api/Students/Logout
+        [HttpGet]
+        [Route("Logout")]
+        public async Task<ActionResult<bool>> Logout()
+        {
+            try
+            {
+                //await _userAccountService.LogoutAsync();
+                return Ok(true);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
 
