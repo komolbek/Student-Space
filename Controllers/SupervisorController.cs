@@ -21,20 +21,20 @@ namespace StudentPlus.Controllers
             _userAccount = userAccount;
         }
 
-        // GET: api/Supervisor/BySupervisor/{id}
-        [HttpGet]
-        [Route("{id}")]
-        public async Task<ActionResult<Supervisor>> GetAllBySupervisor(string id)
-        {
-            return new EmptyResult();
-        }
+        //// GET: api/Supervisor/BySupervisor/{id}
+        //[HttpGet]
+        //[Route("{id}")]
+        //public async Task<ActionResult<Supervisor>> GetAllBySupervisor(string id)
+        //{
+        //    return new EmptyResult();
+        //}
 
         // POST: api/Supervisors
         [HttpPost]
         public async Task<ActionResult<Supervisor>> Register(Supervisor supervisor)
         {
             // Validate incoming supervisor
-            if (!ModelState.IsValid)
+            if (!ModelState.IsValid) 
             {
                 return BadRequest(ModelState);
             }
