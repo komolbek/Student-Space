@@ -41,6 +41,12 @@ namespace StudentPlus.DataRepositories
             }
         }
 
+        public async Task<Supervisor> RetrieveByStudentIdAsync(string stdId)
+        {
+            // code
+            return null;
+        }
+
         public async Task<bool> DeleteAsync(string supervisorId)
         {
             var user = await _context.Supervisor.FirstOrDefaultAsync(supervisor => supervisor.SupervisorId == supervisorId);

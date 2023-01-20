@@ -14,6 +14,12 @@ namespace StudentPlus.Services
         {
             _supervisorRepository = supervisorRepository;
         }
+
+        public async Task<Supervisor> GetSupervisorByStudentId(string stdId)
+        {
+            return await _supervisorRepository.RetrieveByStudentIdAsync(stdId);
+        }
+
         public async Task<Supervisor> RegisterNewSupervisorAsync(Supervisor newSupervisor)
         {
             try
