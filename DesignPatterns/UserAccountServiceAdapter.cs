@@ -70,5 +70,11 @@ namespace StudentPlus.DesignPatterns
                 return await _supervisorAccountService.UpdateSupervisorAccountAsync(supervisor);
             }
         }
+
+        public Task<Supervisor> GetSupervisor(string studentId)
+        {
+            // implement
+            return null;
+        }
     }
 }
