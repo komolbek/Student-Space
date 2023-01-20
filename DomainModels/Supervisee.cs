@@ -2,13 +2,14 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Student_plus.DomainModels
+namespace StudentPlus.DomainModels
 {
     [Table("SUPERVISEE")]
     public class Supervisee
     {
         [Key]
         [Column("supervisee_id")]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string SuperviseeId { get; set; }
 
         [Column("student_id")]
@@ -19,9 +20,9 @@ namespace Student_plus.DomainModels
         [ForeignKey("supervisor_id")]
         public string SupervisorId { get; set; }
 
-        public Supervisee(string superviseeId, string studentId, string supervisorId)
+        public Supervisee(string studentId, string supervisorId)
         {
-            SuperviseeId = superviseeId;
+            SuperviseeId = Guid.NewGuid().ToString();
             StudentId = studentId;
             SupervisorId = supervisorId;
         }
