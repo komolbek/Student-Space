@@ -14,12 +14,11 @@ namespace Student_plus.Services
             _superviseeRepository = superviseeRepository;
 		}
 
-        public async Task<List<Student>> AssignStudentsToSupervisorAsync(List<Student> students, string supervisorId)
+        public async Task<List<string>> AssignStudentsToSupervisorAsync(List<string> studentNumbers, string supervisorId)
         {
-            foreach (Student student in students)
+            foreach (string studentNumber in studentNumbers)
             {
-                string studentId = student.StudentId;
-                Supervisee supervisee = new Supervisee(studentId, supervisorId);
+                Supervisee supervisee = new Supervisee(studentNumber, supervisorId);
 
                 try
                 {
@@ -31,13 +30,12 @@ namespace Student_plus.Services
                 }
             }
 
-            return students;
+            return studentNumbers;
         }
 
-        public async Task<Student> AssignStudentToSupervisorAsync(Student student, string supervisorId)
+        public async Task<string> AssignStudentToSupervisorAsync(string studentNumber, string supervisorId)
         {
-            string studentId = student.StudentId;
-            Supervisee supervisee = new Supervisee(studentId, supervisorId);
+            Supervisee supervisee = new Supervisee(studentNumber, supervisorId);
 
             try
             {
@@ -48,12 +46,12 @@ namespace Student_plus.Services
                 throw;
             }
 
-            return student;
+            return studentNumber;
         }
 
-        public async Task<string?> GetSupervisorIdAsync(string studentId)
+        public async Task<string?> GetSupervisorIdAsync(string studentNumber)
         {
-            Supervisee supervisee = await _superviseeRepository.GetSuperviseeByStudentIdAsync(studentId);
+            Supervisee supervisee = await _superviseeRepository.GetSuperviseeByStudentNumberAsync(studentNumber);
             if (supervisee == null)
             {
                 return null;

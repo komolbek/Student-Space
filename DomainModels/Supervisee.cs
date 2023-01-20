@@ -12,18 +12,18 @@ namespace StudentPlus.DomainModels
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public string SuperviseeId { get; set; }
 
-        [Column("student_id")]
-        [ForeignKey("student_id")]
-        public string StudentId { get; set; }
+        [Column("student_number")]
+        [ForeignKey("student_number")]
+        public string StudentNumber { get; set; }
 
         [Column("supervisor_id")]
         [ForeignKey("supervisor_id")]
         public string SupervisorId { get; set; }
 
-        public Supervisee(string studentId, string supervisorId)
+        public Supervisee(string studentNumber, string supervisorId)
         {
             SuperviseeId = Guid.NewGuid().ToString();
-            StudentId = studentId;
+            StudentNumber = studentNumber;
             SupervisorId = supervisorId;
         }
     }

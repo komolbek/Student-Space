@@ -25,9 +25,9 @@ namespace Student_plus.Controllers
         /// <param name="supervisorId">is used for connecting students</param>
         [HttpPost]
         [Route("/{supervisorId}/students")]
-        public async Task<IActionResult> AddStudents([FromBody] List<Student> students, string supervisorId)
+        public async Task<IActionResult> AddStudents([FromBody] List<string> studentNumbers, string supervisorId)
         {
-            var result = await _superviseeService.AssignStudentsToSupervisorAsync(students, supervisorId);
+            var result = await _superviseeService.AssignStudentsToSupervisorAsync(studentNumbers, supervisorId);
             if (result != null)
             {
                 return Ok(result);
@@ -40,9 +40,9 @@ namespace Student_plus.Controllers
 
         [HttpPost]
         [Route("/{supervisorId}/student")]
-        public async Task<IActionResult> AddStudent([FromBody] Student student, string supervisorId)
+        public async Task<IActionResult> AddStudent([FromBody] string studentNumber, string supervisorId)
         {
-            var result = await _superviseeService.AssignStudentToSupervisorAsync(student, supervisorId);
+            var result = await _superviseeService.AssignStudentToSupervisorAsync(studentNumber, supervisorId);
             if (result != null)
             {
                 return Ok(result);

@@ -15,11 +15,11 @@ namespace Student_plus.DataRepositories
             _context = context;
         }
 
-        public async Task<Supervisee> GetSuperviseeByStudentIdAsync(string studentId)
+        public async Task<Supervisee> GetSuperviseeByStudentNumberAsync(string studentNumber)
         {
             try
             {
-                var supervisee = await _context.Supervisee.SingleOrDefaultAsync(s => s.StudentId == studentId);
+                var supervisee = await _context.Supervisee.SingleOrDefaultAsync(s => s.StudentNumber == studentNumber);
                 return supervisee;
             }
             catch
