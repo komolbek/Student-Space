@@ -1,5 +1,6 @@
 ﻿using System;
 using Student_plus.DataRepositories;
+using Student_plus.DTOs;
 using StudentPlus.DomainModels;
 
 namespace Student_plus.Services
@@ -14,11 +15,11 @@ namespace Student_plus.Services
             _superviseeRepository = superviseeRepository;
 		}
 
-        public async Task<List<string>> AssignStudentsToSupervisorAsync(List<string> studentNumbers, string supervisorId)
+        public async Task<List<SuperviseeDTO>> AssignStudentsToSupervisorAsync(List<SuperviseeDTO> studentNumbers, string supervisorId)
         {
-            foreach (string studentNumber in studentNumbers)
+            foreach (SuperviseeDTO studentNumber in studentNumbers)
             {
-                Supervisee supervisee = new Supervisee(studentNumber, supervisorId);
+                Supervisee supervisee = new Supervisee(studentNumber.StudentNumber, supervisorId);
 
                 try
                 {
@@ -33,9 +34,9 @@ namespace Student_plus.Services
             return studentNumbers;
         }
 
-        public async Task<string> AssignStudentToSupervisorAsync(string studentNumber, string supervisorId)
+        public async Task<SuperviseeDTO> AssignStudentToSupervisorAsync(SuperviseeDTO studentNumber, string supervisorId)
         {
-            Supervisee supervisee = new Supervisee(studentNumber, supervisorId);
+            Supervisee supervisee = new Supervisee(studentNumber.StudentNumber, supervisorId);
 
             try
             {
