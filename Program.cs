@@ -12,7 +12,6 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -20,10 +19,11 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IUserAccount, UserAccountServiceAdapter>();
 builder.Services.AddTransient<StudentAccountService>();
 builder.Services.AddTransient<SupervisorAccountService>();
+builder.Services.AddTransient<SuperviseeService>();
 
 builder.Services.AddTransient<StudentRepository>();
 builder.Services.AddTransient<SupervisorRepository>();
-
+builder.Services.AddTransient<SuperviseeRepository>();
 
 // Database and storage configurations
 builder.Services.AddDbContext<AppDbContext>(options =>

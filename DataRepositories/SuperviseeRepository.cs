@@ -1,10 +1,9 @@
 ﻿using System;
-using Student_plus.DomainModels;
+using StudentPlus.DomainModels;
 using StudentPlus;
 using Microsoft.EntityFrameworkCore;
-using StudentPlus.DomainModels;
 
-namespace Student_plus.DataRepositories
+namespace StudentPlus.DataRepositories
 {
 	public class SuperviseeRepository
 	{

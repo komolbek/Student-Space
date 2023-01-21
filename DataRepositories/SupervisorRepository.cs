@@ -31,9 +31,16 @@ namespace StudentPlus.DataRepositories
         {
             try
             {
-                return await _context.Supervisor
+                var superviror = await _context.Supervisor
                     .Where(x => x.SupervisorNumber == supervisorNum && x.Password == password)
                     .FirstOrDefaultAsync();
+                if (superviror != null)
+                {
+                    return superviror;
+                } else
+                {
+                    throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
+                }
             }
             catch
             {
@@ -41,10 +48,22 @@ namespace StudentPlus.DataRepositories
             }
         }
 
-        public async Task<Supervisor> RetrieveByStudentIdAsync(string stdId)
+        public async Task<Supervisor> RetrieveByIdAsync(string spvId)
         {
-            // code
-            return null;
+            try
+            {
+                var superviror = await _context.Supervisor.Where(s => s.SupervisorId == spvId).FirstOrDefaultAsync();
+                if (superviror == null)
+                {
+                    throw new Exception(ErrorType.UserNotFoundInDatabase.ToString());
+                } else
+                {
+                    return superviror;
+                }                
+            } catch
+            {
+                throw;
+            }
         }
 
         public async Task<bool> DeleteAsync(string supervisorId)

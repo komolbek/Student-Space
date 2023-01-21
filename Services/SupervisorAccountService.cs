@@ -8,16 +8,27 @@ namespace StudentPlus.Services
     {
 
         private readonly SupervisorRepository _supervisorRepository;
+        private readonly SuperviseeService _superviseeService;
 
         public SupervisorAccountService(
-            SupervisorRepository supervisorRepository)
+            SupervisorRepository supervisorRepository,
+            SuperviseeService superviseeService)
         {
             _supervisorRepository = supervisorRepository;
+            _superviseeService = superviseeService;
         }
 
-        public async Task<Supervisor> GetSupervisorByStudentId(string stdId)
+        public async Task<Supervisor?> GetSupervisorByStudentNumber(string stdNumber)
         {
-            return await _supervisorRepository.RetrieveByStudentIdAsync(stdId);
+            string? supervisorId = await _superviseeService.GetSupervisorIdAsync(stdNumber);
+
+            if (supervisorId != null)
+            {
+                return await _supervisorRepository.RetrieveByIdAsync(supervisorId);
+            } else
+            {
+                return null;
+            }           
         }
 
         public async Task<Supervisor> RegisterNewSupervisorAsync(Supervisor newSupervisor)

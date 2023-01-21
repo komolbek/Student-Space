@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Student_plus.DTOs;
-using Student_plus.Services;
+using StudentPlus.DTOs;
+using StudentPlus.Services;
 using StudentPlus.DomainModels;
 
 namespace Student_plus.Controllers

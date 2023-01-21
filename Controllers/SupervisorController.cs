@@ -29,7 +29,7 @@ namespace StudentPlus.Controllers
         //    return new EmptyResult();
         //}
 
-        // POST: api/Supervisors
+        // POST: api/Supervisor
         [HttpPost]
         public async Task<ActionResult<Supervisor>> Register(Supervisor supervisor)
         {
@@ -53,7 +53,7 @@ namespace StudentPlus.Controllers
             }
         }
 
-        // PUT: api/Supervisors/{id}
+        // PUT: api/Supervisor/{id}
         [HttpPut]
         [Route("{id}")]
         public async Task<ActionResult<Supervisor>> Update(string id, Supervisor supervisor)
@@ -79,7 +79,7 @@ namespace StudentPlus.Controllers
             }
         }
 
-        // DELETE: api/Supervisors/{id}
+        // DELETE: api/Supervisor/{id}
         [HttpDelete]
         [Route("{id}")]
         public async Task<ActionResult<Supervisor>> Delete(string id)
@@ -101,7 +101,7 @@ namespace StudentPlus.Controllers
 
 
 
-        // POST: api/Supervisors/Login
+        // POST: api/Supervisor/Login
         [HttpPost]
         [Route("Login")]
         public async Task<ActionResult<Supervisor>> Login(LoginDTO loginData)
@@ -117,7 +117,7 @@ namespace StudentPlus.Controllers
             return Ok(supervisor);
         }
 
-        // GET: api/Supervisors/Logout
+        // GET: api/Supervisor/Logout
         [HttpGet]
         [Route("Logout")]
         public async Task<ActionResult<bool>> Logout()
@@ -131,6 +131,22 @@ namespace StudentPlus.Controllers
             {
                 return BadRequest(ex.Message);
             }
+        }
+
+        // GET: api/Supervisor/{studentNumber}
+        [HttpGet]
+        [Route("{studentNumber}")]
+        public async Task<ActionResult<Supervisor>> GetSupervisor(string studentNumber)
+        {
+            if (studentNumber == null)
+                return BadRequest("Student number must be provided");
+
+            Supervisor? supervisor = await _userAccount.GetSupervisor(studentNumber);
+
+            if (supervisor == null)
+                return NotFound("No supervisor found matching student number");
+
+            return Ok(supervisor);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace StudentPlus.Interfaces
         ///  <summary>
         /// gets supervisor obejct by student id
         /// </summary>
-        public Task<Supervisor> GetSupervisor(string studentId);
+        public Task<Supervisor?> GetSupervisor(string studentId);
     }
 }
 

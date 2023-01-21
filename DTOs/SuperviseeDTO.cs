@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Student_plus.DTOs
+namespace StudentPlus.DTOs
 {
 	public class SuperviseeDTO
 	{        

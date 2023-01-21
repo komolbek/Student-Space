@@ -71,10 +71,17 @@ namespace StudentPlus.DesignPatterns
             }
         }
 
-        public Task<Supervisor> GetSupervisor(string studentId)
+        public async Task<Supervisor?> GetSupervisor(string studentNumber)
         {
-            // implement
-            return null;
+            Supervisor? supervisor = await _supervisorAccountService.GetSupervisorByStudentNumber(studentNumber);
+
+            if (supervisor == null)
+            {
+                return null;
+            } else
+            {
+                return supervisor;
+            }
         }
     }
 }

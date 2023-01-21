@@ -1,14 +1,13 @@
 ﻿using System;
-using Student_plus.DataRepositories;
-using Student_plus.DTOs;
+using StudentPlus.DataRepositories;
+using StudentPlus.DTOs;
 using StudentPlus.DomainModels;
 
-namespace Student_plus.Services
+namespace StudentPlus.Services
 {
 	public class SuperviseeService
 	{
-
-        private SuperviseeRepository _superviseeRepository;
+        private readonly SuperviseeRepository _superviseeRepository;
 
 		public SuperviseeService(SuperviseeRepository superviseeRepository)
 		{
@@ -59,7 +58,7 @@ namespace Student_plus.Services
             }
             else
             {
-                string supervisorId = supervisee.SuperviseeId;
+                string supervisorId = supervisee.SupervisorId;
                 return supervisorId;
             }
         }
